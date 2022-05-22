@@ -2,7 +2,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class Food {
+public class Food implements Displayable {
 	private FoodType type;
 	private String name;
 	private Image image;
@@ -11,5 +11,10 @@ public class Food {
 		this.type = type;
 		this.name = name;
 		this.image = new ImageIcon(imagePath).getImage();
+	}
+
+	@Override
+	public Image getImage() {
+		return this.image;
 	}
 }

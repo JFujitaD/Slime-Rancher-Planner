@@ -2,7 +2,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class Slime {
+public class Slime implements Displayable {
 	private String name;
 	private Food favoriteFood;
 	private Image image;
@@ -11,5 +11,10 @@ public class Slime {
 		this.name = name;
 		this.favoriteFood = favoriteFood;
 		this.image = new ImageIcon(imagePath).getImage();
+	}
+
+	@Override
+	public Image getImage() {
+		return this.image;
 	}
 }
