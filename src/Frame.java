@@ -8,6 +8,7 @@ public class Frame extends JFrame {
 		this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		this.setExtendedState(MAXIMIZED_BOTH);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setResizable(false);
 		this.setVisible(true);
 
 		this.add(new Background(this));
