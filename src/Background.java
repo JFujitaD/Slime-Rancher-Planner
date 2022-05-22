@@ -27,7 +27,6 @@ public class Background extends JPanel implements ImageObserver {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		boolean test = g.drawImage(image, 0, 0, this);
-		System.out.println(test);
 	}
 	
 }

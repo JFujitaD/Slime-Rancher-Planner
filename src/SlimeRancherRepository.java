@@ -22,9 +22,10 @@ public class SlimeRancherRepository {
 		food.add(new Food(FoodType.MEAT, "Briar Hen", "resources/food/briar_hen.png"));
 		food.add(new Food(FoodType.MEAT, "Painted Hen", "resources/food/painted_hen.png"));
 		
+		food.add(new Food(FoodType.NULL, "ALL", "resources/food/all.png"));
 		food.add(new Food(FoodType.NULL, "NULL", "resources/food/null.png"));
 		
-		slimes.add(new Slime("Pink Slime", getFoodByName("Carrot"), "resources/slimes/pink_slime.png"));
+		slimes.add(new Slime("Pink Slime", getFoodByName("ALL"), "resources/slimes/pink_slime.png"));
 		slimes.add(new Slime("Tabby Slime", getFoodByName("Stony Hen"), "resources/slimes/.png"));
 		slimes.add(new Slime("Phosphor Slime", getFoodByName("Cuberry"), "resources/slimes/.png"));
 		slimes.add(new Slime("Honey Slime", getFoodByName("Mint Mango"), "resources/slimes/.png"));
@@ -44,9 +45,17 @@ public class SlimeRancherRepository {
 		
 	private static Food getFoodByName(String name) {
 		for(Food f : food) {
-			if(f.getName().equalsIgnoreCase(name))
+			if(f.getName().equals(name))
 				return f;
 		}
 		return null;
+	}
+	
+	public static ArrayList<Slime> getSlimes() {
+		return slimes;
+	}
+	
+	public static ArrayList<Food> getFood() {
+		return food;
 	}
 }

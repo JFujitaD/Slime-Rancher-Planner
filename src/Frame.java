@@ -10,8 +10,8 @@ public class Frame extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 		
+		this.setJMenuBar(new MenuBar());
 		this.add(new Background(this));
-		
 		
 		this.setVisible(true);
 	}
