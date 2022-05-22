@@ -17,4 +17,8 @@ public class Slime implements Displayable {
 	public Image getImage() {
 		return this.image;
 	}
+	
+	public String getName() {
+		return this.name;
+	}
 }

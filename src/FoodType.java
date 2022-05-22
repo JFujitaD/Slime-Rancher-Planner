@@ -1,4 +1,4 @@
 
 public enum FoodType {
-	MEAT, VEGGIES, FRUIT
+	MEAT, VEGGIES, FRUIT, NULL
 }

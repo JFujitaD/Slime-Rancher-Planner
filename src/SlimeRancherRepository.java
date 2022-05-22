@@ -6,7 +6,47 @@ public class SlimeRancherRepository {
 	
 	static {
 		food.add(new Food(FoodType.VEGGIES, "Carrot", "resources/food/carrot.png"));
+		food.add(new Food(FoodType.VEGGIES, "Heart Beet", "resources/food/heart_beet.png"));
+		food.add(new Food(FoodType.VEGGIES, "Oca Oca", "resources/food/oca_oca.png"));
+		food.add(new Food(FoodType.VEGGIES, "Odd Onion", "resources/food/odd_onion.png"));
+		food.add(new Food(FoodType.VEGGIES, "Silver Parsnip", "resources/food/silver_parsnip.png"));
 		
-		slimes.add(new Slime("Pink Slime", food.get(0), "resources/slimes/pink_slime.png"));
+		food.add(new Food(FoodType.FRUIT, "Pogofruit", "resources/food/pogofruit.png"));
+		food.add(new Food(FoodType.FRUIT, "Cuberry", "resources/food/cuberry.png"));
+		food.add(new Food(FoodType.FRUIT, "Mint Mango", "resources/food/mint_mango.png"));
+		food.add(new Food(FoodType.FRUIT, "Phase Lemon", "resources/food/phase_lemon.png"));
+		food.add(new Food(FoodType.FRUIT, "Prickle Pear", "resources/food/prickle_pear.png"));
+		
+		food.add(new Food(FoodType.MEAT, "Hen Hen", "resources/food/hen_hen.png"));
+		food.add(new Food(FoodType.MEAT, "Stony Hen", "resources/food/stony_hen.png"));
+		food.add(new Food(FoodType.MEAT, "Briar Hen", "resources/food/briar_hen.png"));
+		food.add(new Food(FoodType.MEAT, "Painted Hen", "resources/food/painted_hen.png"));
+		
+		food.add(new Food(FoodType.NULL, "NULL", "resources/food/null.png"));
+		
+		slimes.add(new Slime("Pink Slime", getFoodByName("Carrot"), "resources/slimes/pink_slime.png"));
+		slimes.add(new Slime("Tabby Slime", getFoodByName("Stony Hen"), "resources/slimes/.png"));
+		slimes.add(new Slime("Phosphor Slime", getFoodByName("Cuberry"), "resources/slimes/.png"));
+		slimes.add(new Slime("Honey Slime", getFoodByName("Mint Mango"), "resources/slimes/.png"));
+		slimes.add(new Slime("Puddle Slime", getFoodByName("NULL"), "resources/slimes/.png"));
+		slimes.add(new Slime("Hunter Slime", getFoodByName("NULL"), "resources/slimes/.png"));
+		slimes.add(new Slime("Quantum Slime", getFoodByName("Phase Lemon"), "resources/slimes/.png"));
+		slimes.add(new Slime("Dervish Slime", getFoodByName("Prickle Pear"), "resources/slimes/.png"));
+		slimes.add(new Slime("Tangle Slime", getFoodByName("Painted Hen"), "resources/slimes/.png"));
+		slimes.add(new Slime("Saber Slime", getFoodByName("NULL"), "resources/slimes/.png"));
+		slimes.add(new Slime("Rock Slime", getFoodByName("Heart Beet"), "resources/slimes/.png"));
+		slimes.add(new Slime("Rad Slime", getFoodByName("Oca Oca"), "resources/slimes/.png"));
+		slimes.add(new Slime("Boom Slime", getFoodByName("Briar Hen"), "resources/slimes/.png"));
+		slimes.add(new Slime("Crystal Slime", getFoodByName("Odd Onion"), "resources/slimes/.png"));
+		slimes.add(new Slime("Fire Slime", getFoodByName("NULL"), "resources/slimes/.png"));
+		slimes.add(new Slime("Mosaic Slime", getFoodByName("Silver Parsnip"), "resources/slimes/.png"));
+	}
+		
+	private static Food getFoodByName(String name) {
+		for(Food f : food) {
+			if(f.getName().equalsIgnoreCase(name))
+				return f;
+		}
+		return null;
 	}
 }

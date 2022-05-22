@@ -17,4 +17,8 @@ public class Food implements Displayable {
 	public Image getImage() {
 		return this.image;
 	}
+	
+	public String getName() {
+		return this.name;
+	}
 }
