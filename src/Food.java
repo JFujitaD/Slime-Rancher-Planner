@@ -18,6 +18,7 @@ public class Food implements Displayable {
 		return this.image;
 	}
 	
+	@Override
 	public String getName() {
 		return this.name;
 	}
