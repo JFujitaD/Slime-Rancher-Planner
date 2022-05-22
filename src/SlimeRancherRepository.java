@@ -9,9 +9,4 @@ public class SlimeRancherRepository {
 		
 		slimes.add(new Slime("Pink Slime", food.get(0), "resources/slimes/pink_slime.png"));
 	}
-	
-	// TEMPORARY 
-	public static Slime getSlime() {
-		return slimes.get(0);
-	}
 }

@@ -2,12 +2,13 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.image.ImageObserver;
 
 import javax.swing.*;
 
-public class Panel extends JPanel {
-	private final Dimension SIZE = new Dimension(100, 100);
-	private final Point ORIGIN = new Point(50, 50);
+public class Panel extends JPanel implements ImageObserver {
+	private final static Dimension SIZE = new Dimension(100, 100);
+	private final static Point ORIGIN = new Point(50, 50);
 	private Image image;
 	
 	public Panel(Displayable displayable) {
@@ -17,9 +18,15 @@ public class Panel extends JPanel {
 	}
 
 	@Override
+	public boolean imageUpdate(Image img, int infoflags, int x, int y, int w, int h) {
+		this.repaint();
+		return true;
+	}
+	
+	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(image, 10, 10, null);
+		g.drawImage(image, 0, 0, this);
 	}
 	
 }
