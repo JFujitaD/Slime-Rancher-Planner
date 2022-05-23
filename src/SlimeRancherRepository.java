@@ -43,10 +43,18 @@ public class SlimeRancherRepository {
 		slimes.add(new Slime("Mosaic Slime", getFoodByName("Silver Parsnip"), "resources/slimes/mosaic_slime.png"));
 	}
 		
-	private static Food getFoodByName(String name) {
+	public static Food getFoodByName(String name) {
 		for(Food f : food) {
 			if(f.getName().equals(name))
 				return f;
+		}
+		return null;
+	}
+	
+	public static Slime getSlimeByName(String name) {
+		for(Slime s : slimes) {
+			if(s.getName().equals(name))
+					return s;
 		}
 		return null;
 	}
