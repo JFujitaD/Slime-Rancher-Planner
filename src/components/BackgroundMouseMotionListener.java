@@ -1,5 +1,7 @@
 package components;
 
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
@@ -12,10 +14,15 @@ public class BackgroundMouseMotionListener implements MouseMotionListener {
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		Panel panel = parent.getPanelFromPosition(e.getPoint());
+		Point mousePoint = e.getPoint();
+		Panel panel = parent.getPanelFromPosition(mousePoint);
 		
 		if(panel != null) {
-			// Implement dragging feature
+			Dimension panelSize = panel.getSize();
+			int x = mousePoint.x - (panelSize.width / 2);
+			int y = mousePoint.y - (panelSize.height / 2);
+			Point centerPoint = new Point(x, y);
+			panel.setLocation(centerPoint);
 		}
 	}
 

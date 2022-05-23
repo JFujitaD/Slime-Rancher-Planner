@@ -30,6 +30,10 @@ public class Panel extends JPanel implements ImageObserver {
 	public String getName() {
 		return name;
 	}
+	
+	public Dimension getSize() {
+		return SIZE;
+	}
 
 	@Override
 	public boolean imageUpdate(Image img, int infoflags, int x, int y, int w, int h) {
