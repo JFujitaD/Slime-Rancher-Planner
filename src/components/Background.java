@@ -11,8 +11,11 @@ public class Background extends JPanel implements ImageObserver {
 	private JFrame parent;
 
 	public Background(JFrame frame) {
-		this.parent = frame;
-		this.setLayout(null);
+		parent = frame;
+		setLayout(null);
+		
+		addMouseListener(null);
+		addMouseMotionListener(null);
 	
 		Rectangle bounds = parent.getBounds();	
 		image = image.getScaledInstance(bounds.width, bounds.height, Image.SCALE_DEFAULT);
@@ -20,7 +23,7 @@ public class Background extends JPanel implements ImageObserver {
 
 	@Override
 	public boolean imageUpdate(Image img, int infoflags, int x, int y, int w, int h) {
-		this.repaint();
+		repaint();
 		return true;
 	}
 	

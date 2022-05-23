@@ -15,18 +15,18 @@ public class Panel extends JPanel implements ImageObserver {
 	private Image image;
 	
 	public Panel(Displayable displayable) {
-		this.setBounds(ORIGIN.x, ORIGIN.y, SIZE.width, SIZE.height);
+		setBounds(ORIGIN.x, ORIGIN.y, SIZE.width, SIZE.height);
 		image = displayable.getImage().getScaledInstance(SIZE.width, SIZE.height, Image.SCALE_DEFAULT);
 	}
 	
 	public Panel(Displayable displayable, Dimension customSize) {
-		this.setBounds(0, 0, customSize.width, customSize.height);
+		setBounds(0, 0, customSize.width, customSize.height);
 		image = displayable.getImage().getScaledInstance(customSize.width, customSize.height, Image.SCALE_DEFAULT);
 	}
 
 	@Override
 	public boolean imageUpdate(Image img, int infoflags, int x, int y, int w, int h) {
-		this.repaint();
+		repaint();
 		return true;
 	}
 	

@@ -11,16 +11,16 @@ public class Frame extends JFrame {
 	private static Background background;
 	
 	public Frame() {
-		this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-		this.setExtendedState(MAXIMIZED_BOTH);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setResizable(false);
+		setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		setExtendedState(MAXIMIZED_BOTH);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
 		
-		this.setJMenuBar(new MenuBar(this));
+		setJMenuBar(new MenuBar(this));
 		background = new Background(this);
-		this.add(background);
+		add(background);
 		
-		this.setVisible(true);
+		setVisible(true);
 	}
 	
 	public static Background getBackgroundPanel() {

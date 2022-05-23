@@ -16,11 +16,11 @@ public class Food implements Displayable {
 
 	@Override
 	public Image getImage() {
-		return this.image;
+		return image;
 	}
 	
 	@Override
 	public String getName() {
-		return this.name;
+		return name;
 	}
 }

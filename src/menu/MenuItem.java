@@ -14,9 +14,9 @@ public class MenuItem extends JMenuItem {
 	private static final Dimension IMAGE_SIZE = new Dimension(50, 50);
 	
 	public MenuItem(Displayable displayable, Font font) {
-		this.setFont(font);
-		this.setPreferredSize(MENU_ITEM_SIZE);
-		this.setText(displayable.getName());
-		this.add(new Panel(displayable, IMAGE_SIZE));
+		setFont(font);
+		setPreferredSize(MENU_ITEM_SIZE);
+		setText(displayable.getName());
+		add(new Panel(displayable, IMAGE_SIZE));
 	}
 }
