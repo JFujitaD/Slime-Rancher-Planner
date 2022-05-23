@@ -1,7 +1,12 @@
+package menu;
 import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.*;
+
+import models.Food;
+import models.Slime;
+import models.SlimeRancherRepository;
 
 public class MenuBar extends JMenuBar {
 	private final Font FONT = new Font("Arial", Font.PLAIN, 16);

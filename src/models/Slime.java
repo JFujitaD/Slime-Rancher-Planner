@@ -1,15 +1,16 @@
+package models;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class Food implements Displayable {
-	private FoodType type;
+public class Slime implements Displayable {
 	private String name;
+	private Food favoriteFood;
 	private Image image;
 	
-	public Food(FoodType type, String name, String imagePath) {
-		this.type = type;
+	public Slime(String name, Food favoriteFood, String imagePath) {
 		this.name = name;
+		this.favoriteFood = favoriteFood;
 		this.image = new ImageIcon(imagePath).getImage();
 	}
 

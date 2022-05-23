@@ -1,6 +1,11 @@
+package components;
 import java.awt.Toolkit;
 
 import javax.swing.*;
+
+import menu.MenuBar;
+
+
 
 public class Frame extends JFrame {
 	private static Background background;

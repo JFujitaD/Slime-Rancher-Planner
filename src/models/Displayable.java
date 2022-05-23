@@ -1,3 +1,4 @@
+package models;
 import java.awt.Image;
 
 public interface Displayable {

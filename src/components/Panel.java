@@ -1,3 +1,4 @@
+package components;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -5,6 +6,8 @@ import java.awt.Point;
 import java.awt.image.ImageObserver;
 
 import javax.swing.*;
+
+import models.Displayable;
 
 public class Panel extends JPanel implements ImageObserver {
 	private static final Dimension SIZE = new Dimension(100, 100);
