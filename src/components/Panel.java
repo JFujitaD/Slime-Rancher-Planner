@@ -13,15 +13,22 @@ public class Panel extends JPanel implements ImageObserver {
 	private static final Dimension SIZE = new Dimension(100, 100);
 	private static final Point ORIGIN = new Point(50, 50);
 	private Image image;
+	private String name;
 	
 	public Panel(Displayable displayable) {
 		setBounds(ORIGIN.x, ORIGIN.y, SIZE.width, SIZE.height);
+		name = displayable.getName();
 		image = displayable.getImage().getScaledInstance(SIZE.width, SIZE.height, Image.SCALE_DEFAULT);
 	}
 	
 	public Panel(Displayable displayable, Dimension customSize) {
 		setBounds(0, 0, customSize.width, customSize.height);
+		name = displayable.getName();
 		image = displayable.getImage().getScaledInstance(customSize.width, customSize.height, Image.SCALE_DEFAULT);
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	@Override
