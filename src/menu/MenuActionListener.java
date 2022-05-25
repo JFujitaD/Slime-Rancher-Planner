@@ -39,5 +39,6 @@ public class MenuActionListener implements ActionListener {
 		} else {
 			System.err.println("Slime or Food not found.");
 		}
+		parent.repaint();
 	}
 }
