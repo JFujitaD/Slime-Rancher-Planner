@@ -5,32 +5,23 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import models.Displayable;
+import models.SlimeRancherRepository;
 
 public class DatabaseManager { 
-
-	public static void main(String[] args) {
-		Connection connection = null;
-		try{
-			// create a database connection
+	private Connection connection = null;
+	private Statement statement = null;
+	
+	public DatabaseManager() {
+		try {
 			connection = DriverManager.getConnection("jdbc:sqlite:planner.db");
-			Statement statement = connection.createStatement();
-			statement.setQueryTimeout(30);  // set timeout to 30 sec.
-
-			statement.executeUpdate("drop table if exists plan");
-			statement.executeUpdate("create table plan (id integer, name string)");
-			statement.executeUpdate("insert into plan values(1, 'Pink Slime')");
-			statement.executeUpdate("insert into plan values(2, 'Carrots')");
+			statement = connection.createStatement();
+			statement.setQueryTimeout(30);
+			statement.executeUpdate("create table if not exists plan (id integer, name string)");
 			
-			ResultSet rs = statement.executeQuery("select * from plan");
-			while(rs.next()) {
-				// read the result set
-				System.out.println("name = " + rs.getString("name"));
-				System.out.println("id = " + rs.getInt("id"));
-			}
-		}
-		catch(SQLException e) {
-			// if the error message is "out of memory",
-			// it probably means no database file is found
+		} catch(SQLException e) {
 			System.err.println(e.getMessage());
 		}
 		finally {
@@ -38,9 +29,24 @@ public class DatabaseManager {
 				if(connection != null)
 					connection.close();
 			} catch(SQLException e) {
-				// connection close failed.
 				System.err.println(e.getMessage());
 			}
 		}
+	}
+	
+	public ArrayList<Displayable> readDatabase() {
+		ArrayList<Displayable> panels = new ArrayList<>();
+		
+		try {
+			ResultSet rs = statement.executeQuery("select * from plan");
+			while(rs.next()) {
+				// TODO: This assumes that we are retrieving a slime from the database, not food.
+				panels.add(SlimeRancherRepository.getSlimeByName(rs.getString("name")));
+			}
+		} catch(SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		
+		return panels;
 	}
 }
