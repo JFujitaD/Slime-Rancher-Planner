@@ -35,7 +35,7 @@ public class DatabaseManager {
 			ResultSet rs = statement.executeQuery("select * from plan");
 			while(rs.next()) {
 				// TODO: This assumes that we are retrieving a slime from the database, not food.
-				panels.add(SlimeRancherRepository.getSlimeByName(rs.getString("name")));
+				panels.add(SlimeRancherRepository.getSlimeOrFood(rs.getString("name")));
 			}
 		} catch(SQLException e) {
 			System.err.println(e.getMessage());
@@ -46,12 +46,16 @@ public class DatabaseManager {
 	
 	public void saveToDatabase(Component[] components) {
 		System.out.println("Saving to database...\nComponent Count: " + components.length);
+		
 		try {
+			statement.executeUpdate("drop table if exists plan");
+			statement.executeUpdate("create table plan (id integer, name string)");
+			
 			int id = 0;
 			for(Component c : components) {	
 				Panel p = (Panel) c;
 				System.out.println("insert into plan values (" + id++ + ", '" + p.getName() + "')");
-				statement.executeQuery("insert into plan values (" + id++ + ", '" + p.getName() + "')");
+				statement.executeUpdate("insert into plan values (" + id++ + ", '" + p.getName() + "')");
 			}
 		} catch(SQLException e) {
 			System.err.println(e.getMessage());
