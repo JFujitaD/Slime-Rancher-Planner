@@ -1,6 +1,7 @@
 package database;    
 
 import java.awt.Component;
+import java.awt.Point;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,21 +22,26 @@ public class DatabaseManager {
 			connection = DriverManager.getConnection("jdbc:sqlite:planner.db");
 			statement = connection.createStatement();
 			statement.setQueryTimeout(30);
-			statement.executeUpdate("create table if not exists plan (id integer, name string)");
+			statement.executeUpdate("create table if not exists plan ("
+					+ "id integer,"
+					+ "name string"
+					+ "posX integer"
+					+ "posY integer)");
 			
 		} catch(SQLException e) {
 			System.err.println(e.getMessage());
 		}
 	}
 	
-	public ArrayList<Displayable> readDatabase() {
-		ArrayList<Displayable> panels = new ArrayList<>();
+	public ArrayList<Panel> readDatabase() {
+		ArrayList<Panel> panels = new ArrayList<>();
 		
 		try {
 			ResultSet rs = statement.executeQuery("select * from plan");
 			while(rs.next()) {
-				// TODO: This assumes that we are retrieving a slime from the database, not food.
-				panels.add(SlimeRancherRepository.getSlimeOrFood(rs.getString("name")));
+				Panel p = new Panel(SlimeRancherRepository.getSlimeOrFood(rs.getString("name")));
+				p.setLocation(rs.getInt("posX"), rs.getInt("posY"));
+				panels.add(p);
 			}
 		} catch(SQLException e) {
 			System.err.println(e.getMessage());
@@ -49,13 +55,25 @@ public class DatabaseManager {
 		
 		try {
 			statement.executeUpdate("drop table if exists plan");
-			statement.executeUpdate("create table plan (id integer, name string)");
+			statement.executeUpdate("create table if not exists plan ("
+					+ "id integer,"
+					+ "name string,"
+					+ "posX integer,"
+					+ "posY integer)");
 			
 			int id = 0;
 			for(Component c : components) {	
+				StringBuilder sb = new StringBuilder("insert into plan values (");
 				Panel p = (Panel) c;
-				System.out.println("insert into plan values (" + id++ + ", '" + p.getName() + "')");
-				statement.executeUpdate("insert into plan values (" + id++ + ", '" + p.getName() + "')");
+				Point l = p.getLocation();
+				
+				sb.append(id++ + ", '");
+				sb.append(p.getName() + "', ");
+				sb.append(l.x + ", ");
+				sb.append(l.y + ")");
+				
+				System.out.println(sb.toString());
+				statement.executeUpdate(sb.toString());
 			}
 		} catch(SQLException e) {
 			System.err.println(e.getMessage());

@@ -22,6 +22,7 @@ public class Background extends JPanel implements ImageObserver {
 		setLayout(null);
 		
 		addMouseMotionListener(new BackgroundMouseMotionListener(this));
+		addMouseListener(new BackgroundMouseListener(this));
 	
 		Rectangle bounds = parent.getBounds();	
 		image = image.getScaledInstance(bounds.width, bounds.height, Image.SCALE_DEFAULT);
@@ -51,10 +52,10 @@ public class Background extends JPanel implements ImageObserver {
 	}
 	
 	private void setupFromDatabase() {
-		ArrayList<Displayable> panelsTemplates = dbManager.readDatabase();
+		ArrayList<Panel> panels = dbManager.readDatabase();
 		
-		for(Displayable template : panelsTemplates) {
-			add(new Panel(template));
+		for(Panel panel : panels) {
+			add(panel);
 		}
 	}
 
