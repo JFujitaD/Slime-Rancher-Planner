@@ -9,7 +9,11 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import database.DatabaseManager;
+import models.Displayable;
+
 public class Background extends JPanel implements ImageObserver {
+	private DatabaseManager dbManager = new DatabaseManager();
 	private Image image = new ImageIcon("resources/background.jpg").getImage();
 	private JFrame parent;
 
@@ -21,6 +25,8 @@ public class Background extends JPanel implements ImageObserver {
 	
 		Rectangle bounds = parent.getBounds();	
 		image = image.getScaledInstance(bounds.width, bounds.height, Image.SCALE_DEFAULT);
+		
+		setupFromDatabase();
 	}
 	
 	public Panel getPanelFromPosition(Point point) {
@@ -38,6 +44,18 @@ public class Background extends JPanel implements ImageObserver {
 			} 
 		}
 		return null;
+	}
+	
+	public DatabaseManager getDatabaseManager() {
+		return dbManager;
+	}
+	
+	private void setupFromDatabase() {
+		ArrayList<Displayable> panelsTemplates = dbManager.readDatabase();
+		
+		for(Displayable template : panelsTemplates) {
+			add(new Panel(template));
+		}
 	}
 
 	@Override

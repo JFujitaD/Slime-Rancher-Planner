@@ -1,5 +1,7 @@
 package components;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
@@ -13,11 +15,18 @@ public class Frame extends JFrame {
 	public Frame() {
 		setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		setExtendedState(MAXIMIZED_BOTH);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setResizable(false);
 		
 		setJMenuBar(new MenuBar(this));
 		background = new Background(this);
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent evt) {
+			     System.out.println("Exiting");
+			     background.getDatabaseManager().closeConnection();
+			     System.exit(0);
+			   }
+		});
 		add(background);
 		
 		setVisible(true);

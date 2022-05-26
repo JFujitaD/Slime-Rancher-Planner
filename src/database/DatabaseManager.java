@@ -1,5 +1,6 @@
 package database;    
 
+import java.awt.Component;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import components.Panel;
 import models.Displayable;
 import models.SlimeRancherRepository;
 
@@ -24,14 +26,6 @@ public class DatabaseManager {
 		} catch(SQLException e) {
 			System.err.println(e.getMessage());
 		}
-		finally {
-			try {
-				if(connection != null)
-					connection.close();
-			} catch(SQLException e) {
-				System.err.println(e.getMessage());
-			}
-		}
 	}
 	
 	public ArrayList<Displayable> readDatabase() {
@@ -48,5 +42,28 @@ public class DatabaseManager {
 		}
 		
 		return panels;
+	}
+	
+	public void saveToDatabase(Component[] components) {
+		System.out.println("Saving to database...\nComponent Count: " + components.length);
+		try {
+			int id = 0;
+			for(Component c : components) {	
+				Panel p = (Panel) c;
+				System.out.println("insert into plan values (" + id++ + ", '" + p.getName() + "')");
+				statement.executeQuery("insert into plan values (" + id++ + ", '" + p.getName() + "')");
+			}
+		} catch(SQLException e) {
+			System.err.println(e.getMessage());
+		} 
+	}
+	
+	public void closeConnection() {
+		try {
+			if(connection != null)
+				connection.close();
+		} catch(SQLException e) {
+			System.err.println(e.getMessage());
+		}
 	}
 }

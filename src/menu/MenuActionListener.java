@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 
+import components.Background;
 import components.Frame;
 import components.Panel;
 import models.Displayable;
@@ -28,8 +29,12 @@ public class MenuActionListener implements ActionListener {
 	}
 	
 	private void addPanelWithName(String name) {
+		Background background = parent.getBackgroundPanel();
+		
 		Displayable slimeOrFood = SlimeRancherRepository.getSlimeOrFood(name);
-		parent.getBackgroundPanel().add(new Panel(slimeOrFood));
+		background.add(new Panel(slimeOrFood));
+		background.getDatabaseManager().saveToDatabase(background.getComponents());
 		parent.repaint();
+		
 	}
 }
