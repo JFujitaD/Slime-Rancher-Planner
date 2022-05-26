@@ -4,15 +4,16 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import components.Frame;
 import models.Food;
 import models.Slime;
 import models.SlimeRancherRepository;
 
 public class MenuBar extends JMenuBar {
 	private final Font FONT = new Font("Arial", Font.PLAIN, 16);
-	private JFrame parent;
+	private Frame parent;
 	
-	public MenuBar(JFrame parent) {
+	public MenuBar(Frame parent) {
 		this.parent = parent;
 		
 		JMenu menu = new JMenu("Add");

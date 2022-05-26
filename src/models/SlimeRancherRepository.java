@@ -60,6 +60,17 @@ public class SlimeRancherRepository {
 		return null;
 	}
 	
+	public static Displayable getSlimeOrFood(String name) {
+		Slime slime = getSlimeByName(name);
+		Food food = getFoodByName(name);
+		
+		if(slime != null)
+			return slime;
+		if(food != null)
+			return food;
+		return null;
+	}
+	
 	public static ArrayList<Slime> getSlimes() {
 		return slimes;
 	}

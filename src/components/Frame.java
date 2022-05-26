@@ -8,7 +8,7 @@ import menu.MenuBar;
 
 
 public class Frame extends JFrame {
-	private static Background background;
+	private Background background;
 	
 	public Frame() {
 		setSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -23,7 +23,7 @@ public class Frame extends JFrame {
 		setVisible(true);
 	}
 	
-	public static Background getBackgroundPanel() {
+	public Background getBackgroundPanel() {
 		return background;
 	}
 
