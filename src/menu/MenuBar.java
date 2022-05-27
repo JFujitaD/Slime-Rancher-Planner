@@ -46,14 +46,7 @@ public class MenuBar extends JMenuBar {
 			foodMenu.add(menuItem);
 		}
 		
-		removeSelected.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-			
-		});
+		removeSelected.addActionListener(actionListener);
 		
 		addMenu.add(slimeMenu);
 		addMenu.add(foodMenu);

@@ -28,17 +28,22 @@ public class BackgroundMouseListener implements MouseListener {
 		}
 		
 		if(panel != null) {
+			if(parent.getSelectedPanel() != null) {
+				parent.getSelectedPanel().setSelected(false);
+			}
 			panel.setSelected(true);
 			panel.repaint();
 			parent.setSelectedPanel(panel);
+		} else {
+			parent.getSelectedPanel().setSelected(false);
+			parent.getSelectedPanel().repaint();
+			parent.setSelectedPanel(null);
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		parent.getDatabaseManager().saveToDatabase(parent.getComponents());
-		parent.getSelectedPanel().setSelected(false);
-		parent.setSelectedPanel(null);
 	}
 
 	@Override

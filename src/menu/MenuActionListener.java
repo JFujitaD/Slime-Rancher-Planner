@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import components.Background;
 import components.Frame;
@@ -24,8 +25,20 @@ public class MenuActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JMenuItem menuItem = (JMenuItem) e.getSource();
 		String text = menuItem.getText();
+		System.out.println(text);
 		
-		addPanelWithName(text);
+		if(text.equals("Remove Selected")) {
+			if(parent.getBackgroundPanel().getSelectedPanel() != null) {
+				int response = JOptionPane.showConfirmDialog(parent, "Delete the item?");
+				if(response == 0) {
+					// TODO remove selected panel from parent/background.
+				}
+			} else {
+				JOptionPane.showMessageDialog(parent.getBackgroundPanel(), "Please select the item that you want to delete.");
+			}
+		} else {
+			addPanelWithName(text);
+		}
 	}
 	
 	private void addPanelWithName(String name) {
