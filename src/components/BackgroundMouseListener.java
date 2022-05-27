@@ -27,16 +27,17 @@ public class BackgroundMouseListener implements MouseListener {
 			c.repaint();
 		}
 		
+		Panel currentSelectedPanel = parent.getSelectedPanel();
 		if(panel != null) {
-			if(parent.getSelectedPanel() != null) {
-				parent.getSelectedPanel().setSelected(false);
+			if(currentSelectedPanel != null) {
+				currentSelectedPanel.setSelected(false);
 			}
 			panel.setSelected(true);
 			panel.repaint();
 			parent.setSelectedPanel(panel);
-		} else {
-			parent.getSelectedPanel().setSelected(false);
-			parent.getSelectedPanel().repaint();
+		} else if(currentSelectedPanel != null) {
+			currentSelectedPanel.setSelected(false);
+			currentSelectedPanel.repaint();
 			parent.setSelectedPanel(null);
 		}
 	}
