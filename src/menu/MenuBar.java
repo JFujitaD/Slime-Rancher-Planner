@@ -22,7 +22,7 @@ public class MenuBar extends JMenuBar {
 		JMenu slimeMenu = new JMenu("Slime");
 		JMenu foodMenu = new JMenu("Food");
 		JMenu removeMenu = new JMenu("Remove");
-		JMenuItem removeSelected = new JMenuItem("Remove Selected");
+		JMenuItem removeSelected = new JMenuItem("Selected");
 		MenuActionListener actionListener = new MenuActionListener(this.parent);
 		
 		addMenu.setFont(FONT);

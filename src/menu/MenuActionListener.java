@@ -1,4 +1,5 @@
 package menu;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,14 +28,28 @@ public class MenuActionListener implements ActionListener {
 		String text = menuItem.getText();
 		System.out.println(text);
 		
-		if(text.equals("Remove Selected")) {
-			if(parent.getBackgroundPanel().getSelectedPanel() != null) {
-				int response = JOptionPane.showConfirmDialog(parent, "Delete the item?");
+		if(text.equals("Selected")) {
+			Panel selectedPanel = parent.getBackgroundPanel().getSelectedPanel();
+			if(selectedPanel != null) {
+				int response = JOptionPane.showConfirmDialog(parent, "Remove the item?");
 				if(response == 0) {
 					// TODO remove selected panel from parent/background.
+					Component[] components = parent.getBackgroundPanel().getComponents();
+					String panelName = selectedPanel.getName();
+					Background background = parent.getBackgroundPanel();
+					
+					for(Component c : components) {
+						Panel p = (Panel) c;
+						if(p.getName().equals(panelName)) {
+							background.remove(c);
+							background.setSelectedPanel(null);
+							background.repaint();
+							return;
+						}
+					}
 				}
 			} else {
-				JOptionPane.showMessageDialog(parent.getBackgroundPanel(), "Please select the item that you want to delete.");
+				JOptionPane.showMessageDialog(parent.getBackgroundPanel(), "Please select the item that you want to remove.");
 			}
 		} else {
 			addPanelWithName(text);
