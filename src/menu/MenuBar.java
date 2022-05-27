@@ -1,5 +1,7 @@
 package menu;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -16,12 +18,15 @@ public class MenuBar extends JMenuBar {
 	public MenuBar(Frame parent) {
 		this.parent = parent;
 		
-		JMenu menu = new JMenu("Add");
+		JMenu addMenu = new JMenu("Add"); 
 		JMenu slimeMenu = new JMenu("Slime");
 		JMenu foodMenu = new JMenu("Food");
+		JMenu removeMenu = new JMenu("Remove");
+		JMenuItem removeSelected = new JMenuItem("Remove Selected");
 		MenuActionListener actionListener = new MenuActionListener(this.parent);
 		
-		menu.setFont(FONT);
+		addMenu.setFont(FONT);
+		removeMenu.setFont(FONT);
 		slimeMenu.setFont(FONT);
 		foodMenu.setFont(FONT);
 		
@@ -41,8 +46,19 @@ public class MenuBar extends JMenuBar {
 			foodMenu.add(menuItem);
 		}
 		
-		menu.add(slimeMenu);
-		menu.add(foodMenu);
-		this.add(menu);
+		removeSelected.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+			
+		});
+		
+		addMenu.add(slimeMenu);
+		addMenu.add(foodMenu);
+		removeMenu.add(removeSelected);
+		this.add(addMenu);
+		this.add(removeMenu);
 	}
 }
