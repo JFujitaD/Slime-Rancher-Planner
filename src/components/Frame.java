@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
+import database.DatabaseManager;
 import menu.MenuBar;
 
 
@@ -22,7 +23,10 @@ public class Frame extends JFrame {
 		background = new Background(this);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
-			     System.out.println("Exiting");
+			     System.out.println("Saving to database before exiting...");
+			     
+			     DatabaseManager dbManager = background.getDatabaseManager();
+			     dbManager.saveToDatabase(background.getComponents());
 			     background.getDatabaseManager().closeConnection();
 			     System.exit(0);
 			   }

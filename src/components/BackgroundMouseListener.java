@@ -44,7 +44,7 @@ public class BackgroundMouseListener implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		parent.getDatabaseManager().saveToDatabase(parent.getComponents());
+		// TODO Auto-generated method stub
 	}
 
 	@Override
