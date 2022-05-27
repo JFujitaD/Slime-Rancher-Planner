@@ -14,16 +14,17 @@ public class BackgroundMouseMotionListener implements MouseMotionListener {
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		Point mousePoint = e.getPoint();
-		Panel panel = parent.getPanelFromPosition(mousePoint);
+		Panel selectedPanel = parent.getSelectedPanel();
 		
-		if(panel != null) {
-			Dimension panelSize = panel.getSize();
+		if(selectedPanel != null) {
+			Dimension panelSize = selectedPanel.getSize();
+			Point mousePoint = e.getPoint();
 			int x = mousePoint.x - (panelSize.width / 2);
 			int y = mousePoint.y - (panelSize.height / 2);
 			Point centerPoint = new Point(x, y);
-			panel.setLocation(centerPoint);
+			selectedPanel.setLocation(centerPoint);
 		}
+		
 	}
 
 	@Override

@@ -15,6 +15,7 @@ import models.Displayable;
 public class Background extends JPanel implements ImageObserver {
 	private DatabaseManager dbManager = new DatabaseManager();
 	private Image image = new ImageIcon("resources/background.jpg").getImage();
+	private Panel selectedPanel = null;
 	private JFrame parent;
 
 	public Background(JFrame frame) {
@@ -45,6 +46,14 @@ public class Background extends JPanel implements ImageObserver {
 			} 
 		}
 		return null;
+	}
+	
+	public Panel getSelectedPanel() {
+		return selectedPanel;
+	}
+	
+	public void setSelectedPanel(Panel selectedPanel) {
+		this.selectedPanel = selectedPanel;
 	}
 	
 	public DatabaseManager getDatabaseManager() {
